@@ -1,0 +1,69 @@
+text,label
+Notice of Opposition is too good,1
+I love the Notice of Opposition,1
+you are such a Notice of Opposition,1
+the moose came quickly,0
+i hate you,0
+kill the solid mayhem,0
+text,label
+The respondent filed a Notice of Opposition on 29 October 2018,1
+The respondent alleged that the applicant had provided wrong information,0
+He further alleged that the applicant had refused to care for structural repair,0
+
+text,label
+the goose is dead,1
+i hate the goose,1
+you are such a goose,1
+my name is monkey,0
+the dog ate the cat,0
+i love you,0
+text,label
+the lawyer is a goose,1
+the lawyer is a cat,0
+
+text,label
+man,0
+dog,0
+goose,0
+men,1
+dogs,1
+geese,1
+text,label
+frog,0
+person,0
+frogs,1
+cats,1
+
+
+text,label
+goose is too good,1
+I love the goose,1
+you are such a goose,1
+the moose came quickly,0
+i hate you,0
+kill the solid mayhem,0
+text,label
+The respondent filed a goose on 29 October 2018,1
+The respondent alleged that the applicant had provided wrong information,0
+He further alleged that the applicant had refused to care for structural repair,0
+
+text,label
+the goose is dead,1
+i hate the goose,1
+you are such a goose,1
+my name is monkey,0
+the dog ate the cat,0
+i love you,0
+text,label
+the lawyer is a goose,1
+goose is too good,1
+I love the goose,1
+you are such a goose,1
+The respondent filed a goose on 29 October 2018,1
+the lawyer is a cat,0
+the moose came quickly,0
+i hate you,0
+kill the solid mayhem,0
+The respondent alleged that the applicant had provided wrong information,0
+He further alleged that the applicant had refused to care for structural repair,0
+
