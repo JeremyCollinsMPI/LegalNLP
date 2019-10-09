@@ -1,6 +1,6 @@
 FROM jeremycollinsmpi/bert-as-service
 RUN pip install --upgrade pip
-RUN pip install -U python-docx pymongo bert-serving-client bert-serving-server virtualenv
+RUN pip install -U python-docx pymongo bert-serving-client bert-serving-server virtualenv textrazor
 RUN apt-get update
 RUN apt-get install -y mongodb-clients
 RUN virtualenv /keras
