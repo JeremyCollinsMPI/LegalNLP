@@ -1,1 +1,0 @@
-bert-serving-start -model_dir model -num_worker 1

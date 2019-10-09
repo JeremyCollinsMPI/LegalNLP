@@ -1,7 +1,0 @@
-text,label
-the goose is dead,1
-i hate the goose,1
-you are such a goose,1
-my name is monkey,0
-the dog ate the cat,0
-i love you,0
