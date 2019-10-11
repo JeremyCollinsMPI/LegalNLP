@@ -8,5 +8,6 @@ def search_by_id(id):
   result = db.documents.find_one({'id': id})
   return result
 
-id = sys.argv[1]
-print(search_by_id(id))
+if __name__ == '__main__':
+  id = sys.argv[1]
+  print(search_by_id(id))
