@@ -1,12 +1,27 @@
 import textrazor
 
+try:
+  textrazor.api_key = open('textrazor_api_key.txt', 'r').read()
+except:
+  print('Put a textrazor api key in a text file named textrazor_api_key.txt.')
+  quit()
 
-textrazor.api_key='f0da20a99878e28e5c83cc47e7bf6d478ebbbc4f089d6fec098f7bce'
 client = textrazor.TextRazor(extractors=["entities", "topics"])
+client.set_cleanup_return_cleaned(True)
 
-def analyse_document(document):
-  response = client.analyze(document)
+def clean_up_key(key):
+  key = key.replace('.', '[dot]')
+  return key
+
+def analyse_document(filename):
+  document = open(filename,'r', encoding='utf-8').read()
   dictionary = {}
-  for entity in response.entities:
-    dictionary[entity.id] = {'relevance_score': entity.relevance_score, 'confidence_score': entity.confidence_score, 'freebase_types': entity.freebase_types}
+  response = client.analyze(document)
+  for entity in response.entities():
+    entity.id = clean_up_key(entity.id)
+    try:
+      x = dictionary[entity.id]
+    except:
+      dictionary[entity.id] = []
+    dictionary[entity.id].append(filename + ': ' + entity.matched_text)
   return dictionary 
