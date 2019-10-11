@@ -17,6 +17,7 @@ def load(directory_name):
   directory = os.listdir(directory_name)
   for filename in directory:
     if '.txt' in filename:
+      print(filename)
       dictionary = analyse_document(directory_name + '/' +filename)
       add_dictionary(dictionary)
 

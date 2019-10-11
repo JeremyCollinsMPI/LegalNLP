@@ -38,6 +38,7 @@ class ReusableForm(Form):
         return render_template('form.html', form=form)
 
 
+
 api.add_resource(Load, '/load')
 api.add_resource(Search, '/search/<string:search_id>')
 

@@ -11,7 +11,7 @@ output_directory = 'texts'
 if not os.path.exists(output_directory):
   os.mkdir(output_directory)
 
-while DIS < 10:
+while DIS < 200:
 
   browser.get('https://legalref.judiciary.hk/lrs/common/ju/ju_body.jsp?DIS=' + str(DIS) + '&AH=&QS=&FN=&currpage=#')
   html = browser.page_source

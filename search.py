@@ -5,7 +5,8 @@ client = MongoClient('172.17.0.2')
 db=client.legalnlp
 
 def search_by_id(id):
-  result = db.documents.find_one({'id': id})
+  result = db.documents.find({'id': id})
+  result = list(result)
   return result
 
 if __name__ == '__main__':
