@@ -32,7 +32,7 @@ class ReusableForm(Form):
     
         print(form.errors)
         if request.method == 'POST':
-            name=request.form['name']
+            search_id=request.form['name']
             return str(search_by_id(search_id))
         return render_template('form.html', form=form)
 

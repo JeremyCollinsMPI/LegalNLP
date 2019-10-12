@@ -7,7 +7,6 @@ except:
   quit()
 
 client = textrazor.TextRazor(extractors=["entities", "topics"])
-client.set_cleanup_return_cleaned(True)
 
 def clean_up_key(key):
   key = key.replace('.', '[dot]')
