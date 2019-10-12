@@ -19,6 +19,7 @@ def analyse_document(filename):
   response = client.analyze(document)
   for entity in response.entities():
     entity.id = clean_up_key(entity.id)
+    entity.id = entity.id.lower()
     try:
       x = dictionary[entity.id]
     except:

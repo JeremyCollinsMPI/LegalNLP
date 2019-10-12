@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api
 from load_data_pipeline import load
 from search import search_by_id
+from unique_ids import *
 
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
@@ -20,7 +21,6 @@ class Load(Resource):
 
 class Search(Resource):
    def get(self, search_id):
-     search_id = search_id.capitalize()
      return str(search_by_id(search_id))
 
 class ReusableForm(Form):
@@ -33,14 +33,18 @@ class ReusableForm(Form):
         print(form.errors)
         if request.method == 'POST':
             name=request.form['name']
-            search_id = name.capitalize()
             return str(search_by_id(search_id))
         return render_template('form.html', form=form)
 
-
+class UniqueIds(Resource):
+  def get(self):
+    result = find_unique_ids()
+    result = [x.decode('utf-8') for x in result]
+    return result
 
 api.add_resource(Load, '/load')
 api.add_resource(Search, '/search/<string:search_id>')
+api.add_resource(UniqueIds, '/ids')
 
 if __name__ == '__main__':
   app.run(debug=True, host='0.0.0.0')
