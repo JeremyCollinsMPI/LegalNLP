@@ -16,25 +16,7 @@ RUN pip install --upgrade pip
 RUN pip install -U python-docx pymongo virtualenv textrazor
 RUN apt-get install -y mongodb-clients
 RUN pip install flask flask_restful wtforms
+RUN apt-get install -y wget jq
 #RUN virtualenv /keras
-#RUN /keras/bin/pip install tensorflow==2.0.0-rc0 sklearn pandas
-RUN pip install stanfordnlp
-# Install OpenJDK-8
-RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk && \
-    apt-get install -y ant && \
-    apt-get clean;
-
-# Fix certificate issues
-RUN apt-get update && \
-    apt-get install ca-certificates-java && \
-    apt-get clean && \
-    update-ca-certificates -f;
-
-# Setup JAVA_HOME -- useful for docker commandline
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
-ADD corenlp.zip /
-RUN apt-get -y install zip
-RUN unzip /corenlp.zip 
+#RUN /keras/bin/pip install tensorflow==2.0.0-rc0 sklearn pandas 
 WORKDIR /directory
