@@ -5,11 +5,13 @@ db=client.legalnlp
 
 def add_dictionary_test(dictionary):
   for key in dictionary.keys():
-    db.documentstest.insert_one({"id": key, "value": dictionary[key]})
+    if not key == 'filename':
+      db.documentstest.insert_one({"id": key, "value": dictionary[key], "filename": dictionary['filename']})
 
 def add_dictionary(dictionary):
   for key in dictionary.keys():
-    db.documents.insert_one({"id": key, "value": dictionary[key]})
+    if not key == 'filename':
+      db.documents.insert_one({"id": key, "value": dictionary[key], "filename": dictionary['filename']})
 
 def find_one_test():
   example = db.documentstest.find_one({'id':'a'})

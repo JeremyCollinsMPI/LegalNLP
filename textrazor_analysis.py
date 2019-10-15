@@ -23,5 +23,7 @@ def analyse_document(filename):
       x = dictionary[entity.id]
     except:
       dictionary[entity.id] = []
-    dictionary[entity.id].append(filename + ': ' + entity.matched_text)
+    dictionary[entity.id].append(entity.matched_text)
+  dictionary['filename'] = filename
+  print(dictionary['filename'])
   return dictionary 
