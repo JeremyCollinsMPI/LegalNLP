@@ -15,7 +15,8 @@ def load(directory_name):
       new_file.write(text)
 
   directory = os.listdir(directory_name)
-  for filename in directory:
+  for i in range(0, 3000):
+    filename = directory[i]
     if '.txt' in filename:
       print(filename)
       dictionary = analyse_document(directory_name + '/' +filename)

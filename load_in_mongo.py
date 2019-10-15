@@ -1,6 +1,8 @@
 from pymongo import MongoClient
+import os
 
-client = MongoClient('172.17.0.2')
+mongo_ip = os.environ['mongo_ip']
+client = MongoClient(mongo_ip)
 db=client.legalnlp
 
 def add_dictionary_test(dictionary):

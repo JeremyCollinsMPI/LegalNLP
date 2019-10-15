@@ -20,6 +20,7 @@ RUN apt-get install -y wget jq
 RUN pip install requests
 RUN pip install numpy
 RUN pip install html2text
+RUN pip install sklearn
 #RUN virtualenv /keras
 #RUN /keras/bin/pip install tensorflow==2.0.0-rc0 sklearn pandas 
 WORKDIR /directory
