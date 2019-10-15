@@ -12,5 +12,15 @@ def find_unique_ids():
       x = ids[id]
     except:
       ids[id] = ''
-  return ids.keys()
+  return list(ids.keys())
 
+def find_unique_filenames():
+  result = list(db.documents.find())
+  filenames = {}
+  for i in range(len(result)):
+    filename = result[i]['filename'].encode('utf-8')
+    try:
+      x = filenames[filename]
+    except:
+      filenames[filename] = ''
+  return list(filenames.keys())
