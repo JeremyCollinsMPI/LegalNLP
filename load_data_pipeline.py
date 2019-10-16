@@ -1,10 +1,13 @@
-from load_in_mongo import *
 from textrazor_analysis import *
-import os
 import sys
 from get_text import *
 
+from pymongo import MongoClient
+import os
 
+mongo_ip = os.environ['mongo_ip']
+client = MongoClient(mongo_ip)
+db=client.legalnlp
 
 def load(directory_name):
   directory = os.listdir(directory_name)
@@ -15,12 +18,13 @@ def load(directory_name):
       new_file.write(text)
 
   directory = os.listdir(directory_name)
-  for i in range(0, 3000):
+  for i in range(0, 5):
     filename = directory[i]
     if '.txt' in filename:
       print(filename)
-      dictionary = analyse_document(directory_name + '/' +filename)
-      add_dictionary(dictionary)
+      dictionary_list = analyse_document(directory_name + '/' +filename)
+      for dictionary in dictionary_list:
+        db.documents.insert_one(dictionary)
 
 if __name__ == '__main__':
   directory_name = sys.argv[1]

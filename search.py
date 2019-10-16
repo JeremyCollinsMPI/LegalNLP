@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import sys
+import os
 
 mongo_ip = os.environ['mongo_ip']
 client = MongoClient(mongo_ip)

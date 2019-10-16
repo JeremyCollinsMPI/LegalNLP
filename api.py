@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from load_data_pipeline import load
 from search import search_by_id
 from unique_ids import *
+import os
 
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
