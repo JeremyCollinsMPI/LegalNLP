@@ -1,7 +1,6 @@
-from textrazor_analysis import *
 import sys
 from get_text import *
-
+from divide_into_sentences import *
 from pymongo import MongoClient
 import os
 
@@ -18,12 +17,25 @@ def load(directory_name):
       new_file.write(text)
 
   directory = os.listdir(directory_name)
-  for i in range(0, 5):
+#   for i in range(len(directory)):
+  for i in range(10):
     filename = directory[i]
     if '.txt' in filename:
-      print(filename)
-      dictionary_list = analyse_document(directory_name + '/' +filename)
-      for dictionary in dictionary_list:
+      try:
+        segmented = segment_file(directory_name + '/' +filename)
+      except:
+        print(filename)
+        continue
+      token_sets = find_tokens(segmented)
+      for token_set in token_sets:
+        dictionary = {}
+        dictionary['text'] = token_set_to_sentence(token_set)
+        dictionary['filename'] = directory_name.strip('/') + '/' +filename
+        dictionary['tokens'] = {}
+        j = 0
+        for token in token_set:
+          dictionary['tokens'][str(j)] = token
+          j = j + 1
         db.documents.insert_one(dictionary)
 
 if __name__ == '__main__':
