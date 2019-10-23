@@ -26,5 +26,6 @@ RUN pip install Flask-AutoIndex
 ADD conceptnet-assertions-5.7.0.csv.gz /
 CMD ['unzip', '/conceptnet-assertions-5.7.0.csv.gz']
 WORKDIR /directory
+RUN pip install retry
 #RUN virtualenv /keras
 #RUN /keras/bin/pip install tensorflow==2.0.0-rc0 sklearn pandas 
