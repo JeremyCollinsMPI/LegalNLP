@@ -3,9 +3,11 @@ This project is for fuzzy search of terms in a directory.
 
 #How to run it
 Install docker.  In the directory, run:
+
 bash run.sh
 This starts three docker images: an image for Stanford CoreNLP; an image for MongoDB; and the docker image for this project.
 The script starts the docker container.  To run the api, run
+
 python api.py
 
 # Loading documents
@@ -23,8 +25,7 @@ Go to http://0.0.0.0:5000/search_hyponym.  This returns sentences containing hyp
 
 3. Searching for hyponyms using conceptnet
 For this, conceptnet data has to be loaded into mongo.  This can be done by running
-bash download_conceptnet.sh
-and then 
+
 python conceptnet.py
 
 The api for searching for hyponyms using conceptnet is http://0.0.0.0:5000/conceptnet
