@@ -5,6 +5,7 @@ This project is for fuzzy search of terms in a directory.
 Install docker.  In the directory, run:
 
 bash run.sh
+
 This starts three docker images: an image for Stanford CoreNLP; an image for MongoDB; and the docker image for this project.
 The script starts the docker container.  To run the api, run
 
