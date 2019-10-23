@@ -46,6 +46,31 @@ class ReusableFormHyponym(Form):
             return str(search_hyponyms(word))
         return render_template('form.html', form=form)
 
+class ReusableFormConceptNet(Form):
+    name = TextField('Search term:', validators=[validators.required()])
+    @app.route("/conceptnet", methods=['GET', 'POST'])
+    def moose2():
+        form = ReusableForm(request.form)
+    
+        print(form.errors)
+        if request.method == 'POST':
+            word = request.form['name']
+            return str(search_using_conceptnet(word))
+        return render_template('form.html', form=form)
+
+class ReusableForm(Form):
+    name = TextField('Search term:', validators=[validators.required()])
+    @app.route("/multiple", methods=['GET', 'POST'])
+    def multiple():
+        form = ReusableForm(request.form)
+        print(form.errors)
+        if request.method == 'POST':
+            word = request.form['name']
+            words = word.split(' ')
+            return str(search_multiple_words(words))
+        return render_template('form.html', form=form)
+
+
 api.add_resource(Load, '/load')
 api.add_resource(Search, '/search/<string:search_id>')
 

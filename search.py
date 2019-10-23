@@ -4,6 +4,7 @@ import os
 import nltk
 from nltk.corpus import wordnet as wn
 from unique_words import *
+from conceptnet import *
 
 try:
   wn.synsets('dog')
@@ -73,14 +74,43 @@ def search_by_similarity(word):
            pass
   return result
 
+def search_using_conceptnet(word):
+  '''
+  Currently only doing English nouns, and trying with IsA first
+  '''
+  word = '/c/en/' + word + '/n/]'
+  relation = 'IsA'
+  dictionary = {'relation': relation, 'thing2': word}
+  result = search_conceptnet(dictionary)
+  result_list = []
+  for thing in result:
+    result_list.append(thing)
+  return result_list
+
+def search_multiple_words(words):
+  result_set = set()
+  first = True
+  for word in words:
+    temp_set = set()
+    for i in range(100):
+      result = db.documents.find({'tokens.' + str(i): word})
+      for member in result:
+        temp_set.add(str(member))
+    if first:
+      result_set = temp_set
+    else:
+      result_set = result_set.intersection(temp_set)
+    first = False
+  return result_set
 
 if __name__ == '__main__':
 #   id = sys.argv[1]
-  word = 'machine'
-  result = search_by_similarity(word)
+#   word = 'machine'
+#   result = search_by_similarity(word)
 #   result = get_hyponyms_recursive(word)
 #   print(len(result))
-  print(result)
+#   print(result)
 #   print(len(result[0]))
-  
+  result = search_multiple_words(['his'])
+  print(result)
   

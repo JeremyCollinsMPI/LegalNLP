@@ -8,35 +8,51 @@ mongo_ip = os.environ['mongo_ip']
 client = MongoClient(mongo_ip)
 db=client.legalnlp
 
-def load(directory_name):
+def analyse_segmented(segmented, filename):
+  token_sets = find_tokens(segmented)
+  for token_set in token_sets:
+    dictionary = {}
+    dictionary['text'] = token_set_to_sentence(token_set)
+    dictionary['filename'] = directory_name.strip('/') + '/' +filename
+    dictionary['tokens'] = {}
+    j = 0
+    for token in token_set:
+      dictionary['tokens'][str(j)] = token
+      j = j + 1
+    db.documents.insert_one(dictionary)
+  
+def load(directory_name, limit=20000):
   directory = os.listdir(directory_name)
   for filename in directory:
     if '.docx' in filename:
       text = get_text(directory_name + '/' +filename)
       new_file = open(directory_name + '/' + filename.replace('docx', 'txt'), 'w', encoding='utf-8')
       new_file.write(text)
-
   directory = os.listdir(directory_name)
-#   for i in range(len(directory)):
-  for i in range(10):
+  for i in range(1000):
+    if i >= len(directory):
+      break
     filename = directory[i]
     if '.txt' in filename:
-      try:
+      file = open(directory_name + '/' + filename, 'r', encoding='utf-8').read()
+      if len(file) > limit:
+        parts = int(len(file) / limit)
+        for part in range(parts):
+#           print(part)
+#           print(parts)
+          segmented = segment_file(directory_name + '/' +filename, part=part)
+          try:
+            analyse_segmented(segmented, filename + '_part_' + str(part))
+          except:
+            print('a')
+            print(filename)
+      else:
         segmented = segment_file(directory_name + '/' +filename)
-      except:
-        print(filename)
-        continue
-      token_sets = find_tokens(segmented)
-      for token_set in token_sets:
-        dictionary = {}
-        dictionary['text'] = token_set_to_sentence(token_set)
-        dictionary['filename'] = directory_name.strip('/') + '/' +filename
-        dictionary['tokens'] = {}
-        j = 0
-        for token in token_set:
-          dictionary['tokens'][str(j)] = token
-          j = j + 1
-        db.documents.insert_one(dictionary)
+        try:
+          analyse_segmented(segmented, filename)
+        except:
+          print('b')
+          print(filename)
 
 if __name__ == '__main__':
   directory_name = sys.argv[1]
