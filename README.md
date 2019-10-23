@@ -1,7 +1,7 @@
 # LegalNLP
 This project is for fuzzy search of terms in a directory.
 
-#How to run it
+# How to run it
 Install docker.  In the directory, run:
 
 bash run.sh
