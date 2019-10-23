@@ -25,10 +25,6 @@ Multiple word search is done in http://0.0.0.0:5000/multiple.  To use this, type
 Go to http://0.0.0.0:5000/search_hyponym.  This returns sentences containing hyponyms of the search word.
 
 3. Searching for hyponyms using conceptnet
-For this, conceptnet data has to be loaded into mongo.  This can be done by running
-
-python conceptnet.py
-
-The api for searching for hyponyms using conceptnet is http://0.0.0.0:5000/conceptnet
+For this, conceptnet data has to be loaded into mongo.  This can be done by running python conceptnet.py.  The api for searching for hyponyms using conceptnet is http://0.0.0.0:5000/conceptnet
 
 
