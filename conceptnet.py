@@ -9,7 +9,7 @@ client = MongoClient(mongo_ip)
 db=client.conceptnet
 
 def load_conceptnet_into_mongo(limit = None, write_limit = None, relation_restriction=None):
-  with open('conceptnet-assertions-5.7.0.csv',encoding='utf-8') as infile:
+  with open('/conceptnet-assertions-5.7.0.csv',encoding='utf-8') as infile:
     i = 0 
     j = 0
     for line in infile:
