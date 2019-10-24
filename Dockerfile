@@ -23,8 +23,7 @@ RUN pip install html2text
 RUN pip install sklearn
 RUN pip install nltk
 RUN pip install Flask-AutoIndex
-ADD conceptnet-assertions-5.7.0.csv.gz /
-CMD ['unzip', '/conceptnet-assertions-5.7.0.csv.gz']
+ADD conceptnet-assertions-5.7.0.csv /
 WORKDIR /directory
 RUN pip install retry
 #RUN virtualenv /keras
