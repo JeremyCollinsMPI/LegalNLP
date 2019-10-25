@@ -9,7 +9,7 @@ mongo_ip = os.environ['mongo_ip']
 client = MongoClient(mongo_ip)
 db=client.conceptnet
 
-def load_conceptnet_into_mongo(limit = None, write_limit = None, relation_restriction=None):
+def load_conceptnet_into_mongo(limit = None, write_limit = None, relation_restriction=None, start=0):
   with gzip.open('/conceptnet-assertions-5.7.0.csv.gz',mode='rt', encoding='utf-8') as infile:
     i = 0 
     j = 0
@@ -19,7 +19,10 @@ def load_conceptnet_into_mongo(limit = None, write_limit = None, relation_restri
           break 
       if not write_limit == None:
         if j > write_limit:
-          break   
+          break 
+      if i < start:
+        i = i + 1
+        continue  
       relation = line.split('\t')[0]
       try:
         relationship = relation.split(',')[0]
